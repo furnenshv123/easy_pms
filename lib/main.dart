@@ -1,4 +1,5 @@
 import 'package:easy_pms/config/router/router.dart';
+import 'package:easy_pms/config/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,11 +15,8 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-       
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.light,
+      
       routerConfig: router.config(),
     );
   }
