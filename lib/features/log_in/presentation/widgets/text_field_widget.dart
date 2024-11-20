@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatefulWidget {
-  TextFieldWidget({super.key, required this.title, this.obscureMode = false});
+  TextFieldWidget({super.key, required this.title, this.obscureMode = false, required this.controller});
   final String title;
   bool obscureMode;
+  TextEditingController controller;
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
@@ -18,6 +19,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           Text(widget.title, style: Theme.of(context).textTheme.titleSmall,),
           const SizedBox(height: 7,),
           TextField(
+            controller: widget.controller,
+            autocorrect: false,
             obscureText: widget.obscureMode,
             cursorColor: Theme.of(context).primaryColor,
             decoration: const InputDecoration(

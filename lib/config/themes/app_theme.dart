@@ -4,6 +4,7 @@ class AppTheme {
   static ThemeData get light {
     return ThemeData(
         primaryColor: const Color.fromRGBO(75, 73, 164, 1),
+        highlightColor: const Color.fromRGBO(205, 56, 56, 1),
         scaffoldBackgroundColor: const Color.fromRGBO(234, 234, 234, 1),
         textTheme: const TextTheme(
             labelSmall: TextStyle(

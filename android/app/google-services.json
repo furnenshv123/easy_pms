@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1069677901233",
+    "project_id": "easy-pms",
+    "storage_bucket": "easy-pms.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069677901233:android:a7e4844b645bdcf7593990",
+        "android_client_info": {
+          "package_name": "easy.android.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqST52hFGWUpIODo9otHKqv3Wc99HXDPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
