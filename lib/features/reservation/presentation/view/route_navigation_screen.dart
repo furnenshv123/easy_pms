@@ -17,7 +17,16 @@ class _RouteNavigationScreenState extends State<RouteNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
-      routes: const [ReservationRoute(), ElectronicKeysRoute()],
+      lazyLoad: true,
+      routes: const [
+        ReservationRoute(),
+        ElectronicKeysRoute(),
+        AnalyticsRoute(),
+        StaffRoute(),
+        TariffsRoute(),
+        ServicesRoute(),
+        RoomAccountingRoute()
+      ],
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
         const listOfTiles = [
@@ -28,41 +37,59 @@ class _RouteNavigationScreenState extends State<RouteNavigationScreen> {
           'Tariffs',
           'Services',
           'Room accounting',
-          'Help'
         ];
         int selectedIndex = tabsRouter.activeIndex;
         return Scaffold(
           key: _scaffoldKey,
           appBar: PreferredSize(
-          preferredSize: const Size(double.infinity, 70),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              boxShadow: const [
-                BoxShadow(color: Colors.black, spreadRadius: 0, blurRadius: 4)
-              ],
-              color: Theme.of(context).primaryColor,
+              preferredSize: const Size(double.infinity, 70),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Colors.black, spreadRadius: 0, blurRadius: 4)
+                  ],
+                  color: Theme.of(context).primaryColor,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          _scaffoldKey.currentState?.openDrawer();
+                        },
+                        icon: Icon(
+                          Icons.menu,
+                          color: Colors.white,
+                          size: 45,
+                          weight: 0.1,
+                        )),
+                    Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: 45,
+                    )
+                  ],
+                ),
+              )),
+          drawer: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Drawer(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: DrawerWidget(
+                    list: listOfTiles,
+                    currentIndex: selectedIndex,
+                    onTap: (value) {
+                      selectedIndex = value;
+                      _setCurrentIndex(selectedIndex, tabsRouter);
+                    }),
+              ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(onPressed: (){
-                  _scaffoldKey.currentState?.openDrawer();
-                }, icon: Icon(Icons.menu, color: Colors.white, size: 45, weight: 0.1,)),
-                Icon(Icons.person, color: Colors.white, size: 45,)
-              ],
-            ),
-          )),
-          drawer: Drawer(
-            child: DrawerWidget(
-                list: listOfTiles,
-                currentIndex: selectedIndex,
-                onTap: (value) {
-                  selectedIndex = value;
-                  _setCurrentIndex(selectedIndex, tabsRouter);
-                }),
           ),
           body: child,
         );
